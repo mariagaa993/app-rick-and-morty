@@ -1,0 +1,63 @@
+@import '../../scss/mixins.scss';
+
+.menu-filter {
+    background-color: #34675c21;
+    padding: 25px 15px;
+    width: 100%;
+    @include breakpoint-tablet {
+        padding: 15px 30px;
+    }
+    @include breakpoint-tablet-desktop {
+        background-color: #34675c21;
+        height: calc(100vh - 75px - 50px); 
+        padding: 0;
+        width: 200px;
+    }
+    @include breakpoint-desktop-2 {
+        height: calc(100vh - 83px - 50px);
+    }
+    .menu-filter-title {
+        font-family: 'Montserrat', sans-serif;  
+        margin-top: 13px;   
+        @include breakpoint-tablet-desktop {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+    }
+    .menu-filter-ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        @include breakpoint-tablet-desktop {
+            padding-left: 15px;
+        }
+        li {
+            font-family: 'Montserrat', sans-serif;
+            margin: 13px 0;
+            @include breakpoint-tablet-desktop {
+                margin: 30px 0;
+            }
+        }
+    }     
+}
+
+
+
+/* 
+@include breakpoint-tablet-desktop {
+        background: darken(violet, 30);
+        height: calc(100vh - 75px - 50px); // 100vh menos 75px del header menos 50px de footer
+        padding: 0;
+        width: 150px;
+
+
+        li 
+
+        @include breakpoint-tablet-desktop {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 0;
+            }
+
+*/

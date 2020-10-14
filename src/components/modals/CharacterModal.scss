@@ -1,0 +1,70 @@
+@import '../../scss/mixins.scss';
+
+figure {
+    animation-name: animate;
+    animation-duration: 1s;
+    height: 68vh;
+    margin: 5px auto;
+    overflow-y: auto;
+    width: 100%; 
+    @include breakpoint-tablet-desktop {
+        height: 71vh;
+    }
+    @include breakpoint-desktop-2 {
+        height: 63vh;
+    }
+    @keyframes animate {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @include breakpoint-mobile-2 {
+        text-align: center;
+    }
+    img {
+        background-color: white;
+        border: 4px solid white;
+        border-radius: 4px;
+        box-sizing: border-box;
+        width: 100%;
+        @include breakpoint-mobile-2 {
+            width: 80%;
+        }
+    } 
+    figcaption {       
+        p {
+            font-family: 'Montserrat', sans-serif;
+            margin: 5px 0;
+            @include breakpoint-mobile-2 {
+                text-align: left;
+            }
+        }
+        .mini-cards { 
+            background-color: white;
+            box-shadow: 0 0 5px #ccc;
+            margin: 20px auto;
+            padding: 10px 5px;
+            width: 181px;
+            @include breakpoint-tablet-desktop {
+                display: inline-block;
+                margin: 20px;
+            }
+            @include breakpoint-desktop-2 {
+                margin: 10px;
+                width: 150px;
+            }
+            .mini-cards-img {
+                width: 100%;
+            }
+            .mini-cards-p {
+                font-size: 14px;
+                font-weight: 700;
+                margin: 0;
+                text-align: center;
+            }
+        }
+    }       
+}

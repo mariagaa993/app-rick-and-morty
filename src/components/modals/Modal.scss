@@ -1,0 +1,50 @@
+@import '../../scss/mixins.scss';
+
+.overlay {
+    background-color: rgba(0,0,0, 0.5);
+    left: 0;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+}
+
+.modal {
+    background: white;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 15px;
+    position: fixed;
+    top: 5vw;
+    width: 91%;
+    z-index: 100;
+    @include breakpoint-mobile-2 {
+        width: 93%;
+    }
+    @include breakpoint-tablet {
+        left: 26%;
+        width: 50%;
+    }
+    @include breakpoint-tablet-desktop {
+        left: 24%;
+        width: 55%;
+    }
+    @include breakpoint-desktop-2 {
+        left: 34%;
+        width: 30%;
+    }
+    .modal-header {
+        align-items: center;
+        border-bottom: 1px solid rgb(226, 226, 226);
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        .modal-title {
+            font-family: 'Montserrat', sans-serif;
+            margin : 0;
+        }
+        .modal-button {
+            cursor: pointer;
+        }
+    }
+}

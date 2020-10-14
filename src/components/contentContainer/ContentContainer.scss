@@ -1,0 +1,104 @@
+@import '../../scss/mixins.scss';
+
+.content-container {
+    background-color: #fbfbfb;
+    width: 100%;
+    @include breakpoint-tablet-desktop {
+        box-sizing: border-box;
+        overflow-y: auto;
+        height: calc(100vh - 75px - 50px);
+        font-weight: 400;
+        width: calc(100vw - 200px);
+    }
+    @include breakpoint-desktop-2 {
+        height: calc(100vh - 83px - 50px);
+    }
+    .content-container-search {
+        background-color: #fbfbfb;
+        padding: 25px 15px;
+        @include breakpoint-tablet {
+            padding: 40px 15px;
+            text-align: center;
+        }
+        @include breakpoint-tablet-desktop {
+            padding: 30px 15px 40px 15px;
+            text-align: right;
+            position: fixed;
+            width: calc(100vw - 245px);
+        }
+        @include breakpoint-desktop-2 {
+            width: calc(100vw - 275px);
+        }
+        .input-search {
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-sizing: border-box;
+            color: #ccc;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 5px;
+            padding: 10px;
+            width: 100%;
+            @include breakpoint-tablet {
+                width: 50%;
+            }
+            @include breakpoint-desktop-2 {
+                width: 40%;
+            }
+            &::placeholder {
+                color: #ccc;
+    
+            }
+            &:focus {
+                border-color: #ccc;
+                box-shadow: 0 0 5px rgba(102,175,233,.6);
+                outline: none;
+            }
+        }
+        .search-button {
+            background-color: #34675C;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            height: 38px;
+            outline: none;   
+            width: 100%;
+            @include breakpoint-tablet {
+                border: 2px solid #34675C; 
+                width: 20%;
+            }
+            @include breakpoint-desktop-2 {
+                width: 10%;
+            }
+            &:hover {
+                background-color: #B3C100;
+                @include breakpoint-tablet {
+                    border: 2px solid #B3C100; 
+                }
+            }
+        }
+    }
+}
+
+
+
+
+/* 
+    
+
+     background: #fbfbfb;
+        box-sizing: border-box;
+        overflow-y: auto;
+        height: calc(100vh - 75px - 50px);
+        
+        font-weight: 400;
+        width: calc(100vw - 150px);
+    
+    .content-container-search {
+        background-color: red;
+        
+        position: fixed;
+        width: calc(100vw - 150px);
+
+*/
