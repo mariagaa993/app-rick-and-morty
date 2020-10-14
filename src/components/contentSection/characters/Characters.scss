@@ -2,11 +2,76 @@
 
 .characters {
     background-color: #fbfbfb;
+    position: relative;
     height: 70vh;
     overflow-y: auto;
     padding: 25px 15px;
     @include breakpoint-tablet-desktop {
-        padding: 20px 0;
+        padding: 0 0 20px 0;
+    }
+    .content-container-search {
+        background-color: #fbfbfb;
+        padding: 25px 15px;
+        @include breakpoint-tablet {
+            text-align: center;
+        }
+        @include breakpoint-tablet-desktop {
+            text-align: right;
+            position: fixed;
+            width: calc(100vw - 230px);
+        }
+        @include breakpoint-desktop-2 {
+            width: calc(100vw - 275px);
+        }
+        .input-search {
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-sizing: border-box;
+            color: #ccc;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 5px;
+            padding: 10px;
+            width: 100%;
+            @include breakpoint-tablet {
+                width: 50%;
+            }
+            @include breakpoint-desktop-2 {
+                width: 40%;
+            }
+            &::placeholder {
+                color: #ccc;
+    
+            }
+            &:focus {
+                border-color: #ccc;
+                box-shadow: 0 0 5px rgba(102,175,233,.6);
+                outline: none;
+            }
+        }
+        .search-button {
+            background-color: #34675C;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            height: 38px;
+            outline: none;   
+            width: 100%;
+            @include breakpoint-tablet {
+                border: 2px solid #34675C; 
+                width: 20%;
+            }
+            @include breakpoint-desktop-2 {
+                width: 10%;
+            }
+            &:hover {
+                background-color: #B3C100;
+                @include breakpoint-tablet {
+                    border: 2px solid #B3C100; 
+                }
+            }
+        }
     }
     .characters-title {
         font-family: 'Montserrat', sans-serif;
@@ -16,10 +81,7 @@
             margin: 0 0 15px 0;
         }
         @include breakpoint-tablet-desktop {
-            margin-top: 13%;
-        }
-        @include breakpoint-desktop-2 {
-            margin-top: 8%;
+            margin-top: 16%;
         }
     }
     .cards-container {
