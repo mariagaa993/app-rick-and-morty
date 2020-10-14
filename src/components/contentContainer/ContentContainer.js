@@ -22,29 +22,16 @@ const CharactersQuery = gql`
 
 const ContentContainer = ({radio}) => {
     const { loading, error, data } = useQuery(CharactersQuery);
-    const [value, setValue] = useState();
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
-    const arrayData = data.characters.results;
- 
+    const arrayData = data.characters.results; 
 
     return (
         <section className="content-container">
-            <div className="content-container-search">
-                <input 
-                    className="input-search" 
-                    onChange={((e) => setValue(e.target.value))} 
-                    type="text" 
-                    placeholder="Search..."/>
-                <button 
-                    className="search-button" 
-                    type="button">Clear</button>
-            </div>
-            
             {
                 radio === "characters" ?
-                    <Characters value={value} arrayData={arrayData} />
+                    <Characters arrayData={arrayData} />
                 :
                     null
             } 

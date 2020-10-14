@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useReducer} from 'react';
 import './Characters.scss';
 import CharacterModal from '../../modals/CharacterModal';
+import {reducer, ACTION_FILTER} from '../../reducer/Reducer';
 
-
-const Characters = ({value, arrayData}) => {
-    const [mostrar, setMostrar] = useState([]);
+const Characters = ({arrayData}) => {
+    const [state, dispatch] = useReducer(reducer, arrayData);
     const [selectedCharacter, setSelectedCharacter] = useState();
     const [displayCharacterModal, setDisplayCharacterModal] = useState(false);
 
@@ -12,18 +12,45 @@ const Characters = ({value, arrayData}) => {
         setSelectedCharacter(character);
         setDisplayCharacterModal(true);
     };
-    
-    const mostrarPrincipal = () => setMostrar(arrayData);
 
-    useEffect(() => mostrarPrincipal(), [])
+    const dataCharacters = state.map(character => {
+        return (
+            <div key={character.id} className="card">
+                <img width="400px" height="150px" className="card-img" src={character.image} alt={character.name} />
+                <h3 className="card-title">{character.name}</h3>
+                <button 
+                    className="card-button"
+                    onClick={() => characterInfo(character)}>
+                    Ver más
+                </button>
+            </div>
+        )
+    })    
 
-    const filter = mostrar.filter(character => {
-        return character.name.includes(value);
-    });
+    const filter = (e) => {
+        dispatch({
+            type: ACTION_FILTER,
+            payload: {
+                data: arrayData,
+                query: e.target.value
+            }
+        })
+    }
     
     return (
         <React.Fragment>
             <section className="characters">
+            <div className="content-container-search">
+                <input 
+                    className="input-search" 
+                    onChange={filter} 
+                    type="text" 
+                    placeholder="Search..."/>
+                <button 
+                    className="search-button" 
+                    type="button">Clear
+                </button>
+            </div>
                 <h1 className="characters-title">Characters</h1>
 
                 {
@@ -34,21 +61,7 @@ const Characters = ({value, arrayData}) => {
                 }
 
                 <div className="cards-container">
-                    {
-                        filter.map(character => {
-                            return (
-                                <div key={character.id} className="card">
-                                    <img className="card-img" src={character.image} alt={character.name} />
-                                    <h3 className="card-title">{character.name}</h3>
-                                    <button 
-                                        className="card-button"
-                                        onClick={() => characterInfo(character)}>
-                                        Ver más
-                                    </button>
-                                </div>
-                            );
-                        })
-                    } 
+                    {dataCharacters}
                 </div>
             </section>
         </React.Fragment>
@@ -56,21 +69,3 @@ const Characters = ({value, arrayData}) => {
 }
 
 export default Characters;
-
-/* 
-{
-                        filter.map(character => {
-                            return (
-                                <div key={character.id} className="card">
-                                    <img className="card-img" src={character.image} alt={character.name} />
-                                    <h3 className="card-title">{character.name}</h3>
-                                    <button 
-                                        className="card-button"
-                                        onClick={() => characterInfo(character)}>
-                                        Ver más
-                                    </button>
-                                </div>
-                            );
-                        })
-                    } 
-*/
