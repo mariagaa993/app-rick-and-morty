@@ -17,6 +17,19 @@ const CharactersQuery = gql`
                 species
             }
         }
+        episodes  {
+            results {
+                id
+                name
+                air_date
+                episode
+                characters {
+                    id
+                    name
+                    image
+                }
+            }
+        }
     }
 `;
 
@@ -25,7 +38,8 @@ const ContentContainer = ({radio}) => {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
-    const arrayData = data.characters.results; 
+    const arrayData = data.characters.results;
+    const arrayData2 = data.episodes.results; 
 
     return (
         <section className="content-container">
@@ -37,14 +51,14 @@ const ContentContainer = ({radio}) => {
             } 
             {
                 radio === "locations" ?
-                    <Locations />
+                    <Locations  />
                 
                 :
                     null
             } 
             {
                 radio === "episodes" ?
-                    <Episodes />
+                    <Episodes arrayData={arrayData2} />
                 :
                     null
             } 

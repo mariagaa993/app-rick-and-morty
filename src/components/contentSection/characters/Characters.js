@@ -40,17 +40,17 @@ const Characters = ({arrayData}) => {
     return (
         <React.Fragment>
             <section className="characters">
-            <div className="content-container-search">
-                <input 
-                    className="input-search" 
-                    onChange={filter} 
-                    type="text" 
-                    placeholder="Search..."/>
-                <button 
-                    className="search-button" 
-                    type="button">Clear
-                </button>
-            </div>
+                <div className="content-container-search">
+                    <input 
+                        className="input-search" 
+                        onChange={filter} 
+                        type="text" 
+                        placeholder="Search..."/>
+                    <button 
+                        className="search-button" 
+                        type="button">Clear
+                    </button>
+                </div>
                 <h1 className="characters-title">Characters</h1>
 
                 {
