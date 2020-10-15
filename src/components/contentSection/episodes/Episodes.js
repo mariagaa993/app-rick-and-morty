@@ -20,7 +20,7 @@ const Episodes = ({episodes}) => {
                 <button 
                     className="card-button"
                     onClick={() => episodeInfo(episode)}>
-                    Ver más
+                    View More
                 </button>
             </div>      
         );

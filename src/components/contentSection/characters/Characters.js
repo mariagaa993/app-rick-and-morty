@@ -1,9 +1,11 @@
-import React, {useState, useReducer} from 'react';
+import React, {useState, useReducer, useRef} from 'react';
 import './Characters.scss';
 import CharacterModal from '../../modals/CharacterModal';
 import {reducer, ACTION_FILTER} from '../../reducer/Reducer';
 
 const Characters = ({characters}) => {
+    const searchRef = useRef();
+    const [data, setData] = useState(characters)
     const [state, dispatch] = useReducer(reducer, characters);
     const [selectedCharacter, setSelectedCharacter] = useState();
     const [displayCharacterModal, setDisplayCharacterModal] = useState(false);
@@ -16,9 +18,7 @@ const Characters = ({characters}) => {
     const dataCharacters = state.map(character => {
         return (
             <div key={character.id} className="card">
-                <img 
-                    width="400px" 
-                    height="150px" 
+                <img  
                     className="card-img" 
                     src={character.image} 
                     alt={character.name} 
@@ -27,7 +27,7 @@ const Characters = ({characters}) => {
                 <button 
                     className="card-button"
                     onClick={() => characterInfo(character)}>
-                    Ver más
+                    View More
                 </button>
             </div>
         );
@@ -42,6 +42,10 @@ const Characters = ({characters}) => {
             },
         });
     };
+
+    const clear = () => {
+        searchRef.current.value = '';
+    }
     
     return (
         <React.Fragment>
@@ -51,10 +55,12 @@ const Characters = ({characters}) => {
                         className="input-search" 
                         onChange={filter} 
                         type="text" 
+                        ref={searchRef}
                         placeholder="Search..."/>
                     <button 
                         className="search-button" 
-                        type="button">Clear
+                        type="button"
+                        onClick={clear} >Clear
                     </button>
                 </div>
                 <h1 className="characters-title">Characters</h1>
