@@ -10,5 +10,5 @@ export const reducer = (state, action) => {
               	action.payload.query.length < 3); 
         default:
           	return state;
-    }
+    };
 }

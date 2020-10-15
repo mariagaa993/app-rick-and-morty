@@ -20,7 +20,7 @@ const Modal = ({title, children, close}) => {
                 </article>
             </section>
         </React.Fragment>
-    )
-};
+    );
+}
 
 export default Modal;

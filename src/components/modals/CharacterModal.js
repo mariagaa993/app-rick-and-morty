@@ -6,9 +6,12 @@ const CharacterModal = ({character, close}) => {
     return (
         <Modal title={character.name} close={close}>
             <figure>
-                <img src={character.image}/>
+                <img 
+                    src={character.image}
+                    alt={character.name} 
+                />
                 <figcaption>
-                    <p><strong>Type:</strong> {` ${character.type === "" ? 'Sin dato': character.type}`}</p>
+                    <p><strong>Type:</strong> {`${character.type === "" ? 'Sin dato': character.type}`}</p>
                     <p><strong>Gender:</strong> {character.gender}</p>
                     <p><strong>Specie:</strong> {character.species}</p>
                 </figcaption>

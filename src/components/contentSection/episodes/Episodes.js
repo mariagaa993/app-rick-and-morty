@@ -1,17 +1,16 @@
 import React, {useState, useReducer} from 'react';
 import EpisodeModal from '../../modals/EpisodeModal';
 import {reducer, ACTION_FILTER} from '../../reducer/Reducer';
-import '../characters/Characters.scss';
 
-const Episodes = ({arrayData}) => {
-    const [state, dispatch] = useReducer(reducer, arrayData);
+const Episodes = ({episodes}) => {
+    const [state, dispatch] = useReducer(reducer, episodes);
     const [selectedEpisode, setSelectedEpisode] = useState();
     const [displayEpisodeModal, setDisplayEpisodeModal] = useState(false);
 
     const episodeInfo = episode => {
         setSelectedEpisode(episode);
         setDisplayEpisodeModal(true);
-    }
+    };
 
     const dataEpisodes = state.map(episode => {
         return (
@@ -25,17 +24,17 @@ const Episodes = ({arrayData}) => {
                 </button>
             </div>      
         );
-    })
+    });
 
     const filter = (e) => {
         dispatch({
             type: ACTION_FILTER,
             payload: {
-                data: arrayData,
+                data: episodes,
                 query: e.target.value
-            }
-        })
-    }
+            },
+        });
+    };
     
     return (
         <React.Fragment>

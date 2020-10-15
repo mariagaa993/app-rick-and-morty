@@ -3,8 +3,8 @@ import './Characters.scss';
 import CharacterModal from '../../modals/CharacterModal';
 import {reducer, ACTION_FILTER} from '../../reducer/Reducer';
 
-const Characters = ({arrayData}) => {
-    const [state, dispatch] = useReducer(reducer, arrayData);
+const Characters = ({characters}) => {
+    const [state, dispatch] = useReducer(reducer, characters);
     const [selectedCharacter, setSelectedCharacter] = useState();
     const [displayCharacterModal, setDisplayCharacterModal] = useState(false);
 
@@ -16,7 +16,13 @@ const Characters = ({arrayData}) => {
     const dataCharacters = state.map(character => {
         return (
             <div key={character.id} className="card">
-                <img width="400px" height="150px" className="card-img" src={character.image} alt={character.name} />
+                <img 
+                    width="400px" 
+                    height="150px" 
+                    className="card-img" 
+                    src={character.image} 
+                    alt={character.name} 
+                />
                 <h3 className="card-title">{character.name}</h3>
                 <button 
                     className="card-button"
@@ -24,18 +30,18 @@ const Characters = ({arrayData}) => {
                     Ver más
                 </button>
             </div>
-        )
-    })    
+        );
+    });   
 
     const filter = (e) => {
         dispatch({
             type: ACTION_FILTER,
             payload: {
-                data: arrayData,
+                data: characters,
                 query: e.target.value
-            }
-        })
-    }
+            },
+        });
+    };
     
     return (
         <React.Fragment>

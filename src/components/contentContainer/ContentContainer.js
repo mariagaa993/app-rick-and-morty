@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './ContentContainer.scss';
 import Characters from '../contentSection/characters/Characters';
 import Locations from '../contentSection/locations/Locations';
 import Episodes from '../contentSection/episodes/Episodes';
 import { useQuery, gql } from '@apollo/client';
 
-const CharactersQuery = gql`
+const dataQuery = gql`
     {
         characters(page: 0) {
             results {
@@ -30,40 +30,55 @@ const CharactersQuery = gql`
                 }
             }
         }
+        locations {
+            results {
+                id
+                name
+                type
+                dimension
+                residents {
+                    id
+                    name
+                    image
+                }
+            }
+        }
     }
 `;
 
 const ContentContainer = ({radio}) => {
-    const { loading, error, data } = useQuery(CharactersQuery);
+    const { loading, error, data } = useQuery(dataQuery);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
-    const arrayData = data.characters.results;
-    const arrayData2 = data.episodes.results; 
+    
+    const characters = data.characters.results;
+    const episodes = data.episodes.results;
+    const locations = data.locations.results; 
 
     return (
         <section className="content-container">
             {
                 radio === "characters" ?
-                    <Characters arrayData={arrayData} />
-                :
-                    null
-            } 
-            {
-                radio === "locations" ?
-                    <Locations  />
-                
+                    <Characters characters={characters} />
                 :
                     null
             } 
             {
                 radio === "episodes" ?
-                    <Episodes arrayData={arrayData2} />
+                    <Episodes episodes={episodes} />
                 :
                     null
-            } 
+            }
+            {
+                radio === "locations" ?
+                    <Locations locations={locations} />
+                
+                :
+                    null
+            }  
         </section>
     );
-};
+}
 
 export default ContentContainer;
