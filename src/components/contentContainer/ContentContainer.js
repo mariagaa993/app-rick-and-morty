@@ -17,7 +17,7 @@ const dataQuery = gql`
                 species
             }
         }
-        episodes  {
+        episodes {
             results {
                 id
                 name
@@ -49,8 +49,8 @@ const dataQuery = gql`
 const ContentContainer = ({radio}) => {
     const { loading, error, data } = useQuery(dataQuery);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+    if (loading) return <h1 className="loading-error">Loading...✨</h1>;
+    if (error) return <h1 className="loading-error">Error!😭</h1>;
     
     const characters = data.characters.results;
     const episodes = data.episodes.results;

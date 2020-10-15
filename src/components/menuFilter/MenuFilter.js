@@ -14,7 +14,7 @@ const MenuFilter = ({radio, setRadio}) => {
                             value="characters" 
                             onChange={(e) => setRadio(e.target.value)} 
                         />
-                        Characters
+                        Characters 🙂
                     </li>
                     <li>
                         <input 
@@ -23,7 +23,7 @@ const MenuFilter = ({radio, setRadio}) => {
                             value="episodes" 
                             onChange={(e) => setRadio(e.target.value)} 
                         />
-                        Episodes
+                        Episodes 🤩
                     </li>
                     <li>
                         <input 
@@ -32,7 +32,7 @@ const MenuFilter = ({radio, setRadio}) => {
                             value="locations" 
                             onChange={(e) => setRadio(e.target.value)} 
                         />
-                        Locations
+                        Locations 📍
                     </li>
                 </ul>
             </nav>  

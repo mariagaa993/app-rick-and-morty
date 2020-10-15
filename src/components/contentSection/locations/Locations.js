@@ -20,7 +20,7 @@ const Locations = ({locations}) => {
                 <button 
                     className="card-button"
                     onClick={() => locationInfo(location)}>
-                    Ver más
+                    View More
                 </button>
             </div>
         );
