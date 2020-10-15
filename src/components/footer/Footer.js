@@ -7,6 +7,6 @@ const Footer = () => {
             <p>&copy; - Created by Maria Alarcon❤️</p>
         </footer>
     );
-};
+}
 
 export default Footer;

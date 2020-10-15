@@ -1,41 +1,55 @@
-import React, {useState} from 'react';
-import { useQuery, gql } from '@apollo/client';
+import React, {useState, useReducer} from 'react';
 import LocationModal from '../../modals/LocationModal';
+import {reducer, ACTION_FILTER} from '../../reducer/Reducer';
 
-const LocationsQuery = gql`
-    {
-        locations {
-            results {
-                id
-                name
-                type
-                dimension
-                residents {
-                    id
-                    name
-                    image
-                }
-            }
-        }
-    }
-`;
-
-const Locations = () => {
+const Locations = ({locations}) => {
+    const [state, dispatch] = useReducer(reducer, locations);
     const [selectedLocation, setSelectedLocation] = useState();
     const [displayLocationModal, setDisplayLocationModal] = useState(false);
-    const { loading, error, data } = useQuery(LocationsQuery);
 
     const locationInfo = location => {
         setSelectedLocation(location);
         setDisplayLocationModal(true);
-    }
-    
-    if (loading) return <h1>Loading...</h1>;
-    if (error) return <p>Error :(</p>;
-    
+    };
+
+    const dataLocations = state.map(location => {
+        return (
+            <div key={location.id} className="card">
+                <h3 className="card-title">{location.name}</h3>
+                <p className="card-paragraph">{location.dimension}</p>
+                <button 
+                    className="card-button"
+                    onClick={() => locationInfo(location)}>
+                    Ver más
+                </button>
+            </div>
+        );
+    });
+
+    const filter = (e) => {
+        dispatch({
+            type: ACTION_FILTER,
+            payload: {
+                data: locations,
+                query: e.target.value
+            },
+        });
+    };
+   
     return (
         <React.Fragment>
             <section className="characters">
+                <div className="content-container-search">
+                    <input 
+                        className="input-search" 
+                        onChange={filter} 
+                        type="text" 
+                        placeholder="Search..."/>
+                    <button 
+                        className="search-button" 
+                        type="button">Clear
+                    </button>
+                </div>
                 <h1 className="characters-title">Locations</h1>
 
                 {
@@ -46,21 +60,7 @@ const Locations = () => {
                 }
 
                 <div className="cards-container">
-                    {
-                        data.locations.results.map(location => {
-                            return (
-                                <div key={location.id} className="card">
-                                    <h3 className="card-title">{location.name}</h3>
-                                    <p className="card-paragraph">{location.dimension}</p>
-                                    <button 
-                                        className="card-button"
-                                        onClick={() => locationInfo(location)}>
-                                        Ver más
-                                    </button>
-                                </div>
-                            );
-                        })
-                    }
+                    {dataLocations}
                 </div>
             </section>
         </React.Fragment>

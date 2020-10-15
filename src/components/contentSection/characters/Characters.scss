@@ -16,9 +16,12 @@
             text-align: center;
         }
         @include breakpoint-tablet-desktop {
-            text-align: right;
             position: fixed;
             width: calc(100vw - 230px);
+        }
+        @include breakpoint-desktop-1 {
+            background-color: #fbfbfb;
+            padding: 45px 15px 45px 15px;
         }
         @include breakpoint-desktop-2 {
             width: calc(100vw - 275px);
@@ -82,6 +85,9 @@
         }
         @include breakpoint-tablet-desktop {
             margin-top: 16%;
+        }
+        @include breakpoint-desktop-2 {
+            margin-top: 12%;
         }
     }
     .cards-container {
