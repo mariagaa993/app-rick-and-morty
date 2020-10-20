@@ -1,10 +1,10 @@
 import React, { useState, useRef, useContext} from 'react';
 import './ContentContainer.scss';
-import Characters from '../contentSection/Characters';
-import Locations from '../contentSection/Locations';
-import Episodes from '../contentSection/Episodes';
-import InputContext from '../contexts/InputContext';
-import RadioContext from '../contexts/RadioContext';
+import Characters from '../sections/Characters';
+import Locations from '../sections/Locations';
+import Episodes from '../sections/Episodes';
+import InputContext from '../../contexts/InputContext';
+import RadioContext from '../../contexts/RadioContext';
 
 
 const ContentContainer = () => {

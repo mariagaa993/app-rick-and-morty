@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Modal from './Modal';
-import PagesContext from '../contexts/PagesContext';
+import PagesContext from '../../contexts/PagesContext';
 
 const ModalEpisode = () => {
     const {selectedEpisode, setDisplayEpisodeModal} = useContext(PagesContext);

@@ -1,18 +1,18 @@
 import React, { useState, useContext } from 'react';
-import LocationModal from '../modals/LocationModal';
+import EpisodeModal from '../modals/EpisodeModal';
 import { useQuery, gql } from '@apollo/client';
-import InputContext from '../contexts/InputContext';
-import PagesContext from '../contexts/PagesContext';
+import InputContext from '../../contexts/InputContext';
+import PagesContext from '../../contexts/PagesContext';
 
-const Locations = () => {
+const Episodes = () => {
     const {input} = useContext(InputContext);
     const [pageNumber, setPageNumber] = useState(1);
-    const [selectedLocation, setSelectedLocation] = useState();
-    const [displayLocationModal, setDisplayLocationModal] = useState(false);
+    const [selectedEpisode, setSelectedEpisode] = useState();
+    const [displayEpisodeModal, setDisplayEpisodeModal] = useState(false);
 
-    const locationInfo = location => {
-        setSelectedLocation(location);
-        setDisplayLocationModal(true);
+    const episodeInfo = episode => {
+        setSelectedEpisode(episode);
+        setDisplayEpisodeModal(true);
     };
 
     const nextPage = () => setPageNumber(pageNumber + 1);
@@ -21,13 +21,13 @@ const Locations = () => {
 
     const dataQuery = gql`
     query {
-        locations(page:${pageNumber}, filter:{name:"${input}"}) {
+        episodes(page:${pageNumber}, filter:{name:"${input}"}) {
             results {
                 id
                 name
-                type
-                dimension
-                residents {
+                air_date
+                episode
+                characters {
                     id
                     name
                     image
@@ -41,28 +41,28 @@ const Locations = () => {
     if (loading) return <h1 className="loading-error">Loading...✨</h1>;
     if (error) return <h1 className="loading-error">Error!😭</h1>;
     
-    const locations = data.locations.results;
+    const episodes = data.episodes.results;
 
-    const dataLocations = locations.map(location => {
+    const dataEpisodes = episodes.map(episode => {
         return (
-            <div key={location.id} className="content-section-cards-card">
-                <h3 className="content-section-cards-card-title">{location.name}</h3>
-                <p className="content-section-cards-card-paragraph">{location.dimension}</p>
+            <div key={episode.id} className="content-section-cards-card">
+                <h3 className="content-section-cards-card-title">{episode.name}</h3>
+                <p className="content-section-cards-card-paragraph">{episode.episode}</p>
                 <button 
                     className="content-section-cards-card-button"
-                    onClick={() => locationInfo(location)}>
+                    onClick={() => episodeInfo(episode)}>
                     View More
                 </button>
-            </div>
+            </div>      
         );
     });
-   
+    
     return (
-        <PagesContext.Provider value={{ selectedLocation, setDisplayLocationModal }}>
+        <PagesContext.Provider value={{ selectedEpisode, setDisplayEpisodeModal }}>
             <section className="content-section">
-                <h1 className="content-section-title">Locations</h1>
+                <h1 className="content-section-title">Episodes</h1>
                 <div className="content-section-cards">
-                    {dataLocations}
+                    {dataEpisodes}
                 </div>
                 <div className="content-section-buttons">
                     <button 
@@ -80,10 +80,10 @@ const Locations = () => {
                         Next
                     </button>
                 </div>
-                { displayLocationModal ? <LocationModal /> : null }
+                { displayEpisodeModal ? <EpisodeModal /> : null }
             </section>
         </PagesContext.Provider>  
     );
 }
 
-export default Locations;
+export default Episodes;

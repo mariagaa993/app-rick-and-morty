@@ -33,6 +33,18 @@
         @include breakpoint-mobile-2 {
             width: 80%;
         }
+        @include breakpoint-tablet-desktop {
+            width: 70%;
+        }
+        @include breakpoint-desktop-1 {
+            width: 65%;
+        }
+        @include breakpoint-desktop-2 {
+            width: 93%;
+        }
+        @include breakpoint-desktop-3 {
+            width: 80%;
+        }
     } 
     .page-modals-figcaption {       
         .page-modals-figcaption-p {
