@@ -1,82 +1,56 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import './ContentContainer.scss';
 import Characters from '../contentSection/characters/Characters';
 import Locations from '../contentSection/locations/Locations';
 import Episodes from '../contentSection/episodes/Episodes';
-import { useQuery, gql } from '@apollo/client';
 
-const dataQuery = gql`
-    {
-        characters(page: 0) {
-            results {
-                id
-                name
-                image
-                type
-                gender
-                species
-            }
-        }
-        episodes {
-            results {
-                id
-                name
-                air_date
-                episode
-                characters {
-                    id
-                    name
-                    image
-                }
-            }
-        }
-        locations {
-            results {
-                id
-                name
-                type
-                dimension
-                residents {
-                    id
-                    name
-                    image
-                }
-            }
-        }
-    }
-`;
 
 const ContentContainer = ({radio}) => {
-    const { loading, error, data } = useQuery(dataQuery);
-
-    if (loading) return <h1 className="loading-error">Loading...✨</h1>;
-    if (error) return <h1 className="loading-error">Error!😭</h1>;
+    const [input, setInput] = useState('');
+    const searchRef = useRef();
     
-    const characters = data.characters.results;
-    const episodes = data.episodes.results;
-    const locations = data.locations.results; 
+    const inputValue = e => setInput(e.target.value);
 
+    const clear = () => {
+        searchRef.current.value = '';
+        setInput('');
+    };
+    
     return (
         <section className="content-container">
+            <div className="content-container-search">
+                <input 
+                    className="input-search"        
+                    type="text" 
+                    ref={searchRef}
+                    onChange={inputValue}
+                    placeholder="Search..."/>
+                <button 
+                    className="clear-button" 
+                    type="button"
+                    onClick={clear}>
+                    Clear
+                </button>
+            </div>
+            
             {
-                radio === "characters" ?
-                    <Characters characters={characters} />
-                :
-                    null
+            radio === "characters" ?
+                <Characters input={input} />
+            :
+                null
             } 
             {
-                radio === "episodes" ?
-                    <Episodes episodes={episodes} />
-                :
-                    null
-            }
+            radio === "episodes" ?
+                <Episodes input={input} />
+            :
+                null
+            } 
             {
-                radio === "locations" ?
-                    <Locations locations={locations} />
-                
-                :
-                    null
-            }  
+            radio === "locations" ?
+                <Locations input={input} />
+            :
+                null
+            }    
         </section>
     );
 }

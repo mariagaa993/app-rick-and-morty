@@ -1,12 +1,10 @@
-import React, {useState, useReducer, useRef} from 'react';
+import React, { useState } from 'react';
 import './Characters.scss';
 import CharacterModal from '../../modals/CharacterModal';
-import {reducer, ACTION_FILTER} from '../../reducer/Reducer';
+import { useQuery, gql } from '@apollo/client';
 
-const Characters = ({characters}) => {
-    const searchRef = useRef();
-    const [data, setData] = useState(characters)
-    const [state, dispatch] = useReducer(reducer, characters);
+const Characters = ({input}) => {
+    const [pageNumber, setPageNumber] = useState(1);
     const [selectedCharacter, setSelectedCharacter] = useState();
     const [displayCharacterModal, setDisplayCharacterModal] = useState(false);
 
@@ -15,7 +13,32 @@ const Characters = ({characters}) => {
         setDisplayCharacterModal(true);
     };
 
-    const dataCharacters = state.map(character => {
+    const nextPage = () => setPageNumber(pageNumber + 1);
+    
+    const prevPage = () => setPageNumber(pageNumber - 1);
+
+    const dataQuery = gql`
+    query {
+        characters(page:${pageNumber}, filter:{name:"${input}"}) {
+            results {
+                id
+                name
+                image
+                type
+                gender
+                species
+            }
+        }
+    }`;
+
+    const { loading, error, data } = useQuery(dataQuery);
+
+    if (loading) return <h1 className="loading-error">Loading...✨</h1>;
+    if (error) return <h1 className="loading-error">Error!😭</h1>;
+    
+    const characters = data.characters.results;
+
+    const dataCharacters = characters.map(character => {
         return (
             <div key={character.id} className="card">
                 <img  
@@ -32,37 +55,10 @@ const Characters = ({characters}) => {
             </div>
         );
     });   
-
-    const filter = (e) => {
-        dispatch({
-            type: ACTION_FILTER,
-            payload: {
-                data: characters,
-                query: e.target.value
-            },
-        });
-    };
-
-    const clear = () => {
-        searchRef.current.value = '';
-    }
     
     return (
         <React.Fragment>
             <section className="characters">
-                <div className="content-container-search">
-                    <input 
-                        className="input-search" 
-                        onChange={filter} 
-                        type="text" 
-                        ref={searchRef}
-                        placeholder="Search..."/>
-                    <button 
-                        className="search-button" 
-                        type="button"
-                        onClick={clear} >Clear
-                    </button>
-                </div>
                 <h1 className="characters-title">Characters</h1>
 
                 {
@@ -74,6 +70,22 @@ const Characters = ({characters}) => {
 
                 <div className="cards-container">
                     {dataCharacters}
+                </div>
+                <div className="container-buttons">
+                    <button 
+                        type="button" 
+                        className="prev-button" 
+                        disabled={`${pageNumber === 1 ? 'disabled' : ''}`} 
+                        onClick={prevPage}>
+                        Prev
+                    </button>
+                    <button 
+                        type="button"
+                        className="next-button" 
+                        disabled={`${pageNumber === 34 ? 'disabled' : ''}`}
+                        onClick={nextPage}>
+                        Next
+                    </button>
                 </div>
             </section>
         </React.Fragment>

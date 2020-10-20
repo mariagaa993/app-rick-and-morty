@@ -1,9 +1,8 @@
-import React, {useState, useReducer} from 'react';
+import React, { useState } from 'react';
 import EpisodeModal from '../../modals/EpisodeModal';
-import {reducer, ACTION_FILTER} from '../../reducer/Reducer';
+import { useQuery, gql } from '@apollo/client';
 
-const Episodes = ({episodes}) => {
-    const [state, dispatch] = useReducer(reducer, episodes);
+const Episodes = ({input}) => {
     const [selectedEpisode, setSelectedEpisode] = useState();
     const [displayEpisodeModal, setDisplayEpisodeModal] = useState(false);
 
@@ -12,7 +11,31 @@ const Episodes = ({episodes}) => {
         setDisplayEpisodeModal(true);
     };
 
-    const dataEpisodes = state.map(episode => {
+    const dataQuery = gql`
+    query {
+        episodes(filter:{name:"${input}"}) {
+            results {
+                id
+                name
+                air_date
+                episode
+                characters {
+                    id
+                    name
+                    image
+                }
+            }
+        }
+    }`;
+
+    const { loading, error, data } = useQuery(dataQuery);
+
+    if (loading) return <h1 className="loading-error">Loading...✨</h1>;
+    if (error) return <h1 className="loading-error">Error!😭</h1>;
+    
+    const episodes = data.episodes.results;
+
+    const dataEpisodes = episodes.map(episode => {
         return (
             <div key={episode.id} className="card">
                 <h3 className="card-title">{episode.name}</h3>
@@ -25,31 +48,10 @@ const Episodes = ({episodes}) => {
             </div>      
         );
     });
-
-    const filter = (e) => {
-        dispatch({
-            type: ACTION_FILTER,
-            payload: {
-                data: episodes,
-                query: e.target.value
-            },
-        });
-    };
     
     return (
         <React.Fragment>
             <section className="characters">
-                <div className="content-container-search">
-                    <input 
-                        className="input-search" 
-                        onChange={filter} 
-                        type="text" 
-                        placeholder="Search..."/>
-                    <button 
-                        className="search-button" 
-                        type="button">Clear
-                    </button>
-                </div>
                 <h1 className="characters-title">Episodes</h1>
 
                 {
