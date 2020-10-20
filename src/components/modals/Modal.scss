@@ -44,7 +44,13 @@
             margin : 0;
         }
         .modal-button {
+            background-color: transparent;
+            border: none;
             cursor: pointer;
+            outline: none;
+            .modal-button-img {
+                width: 18px;
+            }
         }
     }
 }

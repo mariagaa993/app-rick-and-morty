@@ -1,6 +1,6 @@
 @import '../../scss/mixins.scss';
 
-figure {
+.page-modals-figure {
     animation-name: animate;
     animation-duration: 1s;
     height: 68vh;
@@ -24,7 +24,7 @@ figure {
     @include breakpoint-mobile-2 {
         text-align: center;
     }
-    img {
+    .page-modals-figure-img {
         background-color: white;
         border: 4px solid white;
         border-radius: 4px;
@@ -34,15 +34,15 @@ figure {
             width: 80%;
         }
     } 
-    figcaption {       
-        p {
+    .page-modals-figcaption {       
+        .page-modals-figcaption-p {
             font-family: 'Montserrat', sans-serif;
             margin: 5px 0;
             @include breakpoint-mobile-2 {
                 text-align: left;
             }
         }
-        .mini-cards { 
+        .page-modals-figcaption-mini-cards { 
             background-color: white;
             box-shadow: 0 0 5px #ccc;
             margin: 20px auto;
@@ -56,10 +56,10 @@ figure {
                 margin: 10px;
                 width: 150px;
             }
-            .mini-cards-img {
+            .page-modals-figcaption-mini-cards-img {
                 width: 100%;
             }
-            .mini-cards-p {
+            .page-modals-figcaption-mini-cards-p {
                 font-size: 14px;
                 font-weight: 700;
                 margin: 0;
