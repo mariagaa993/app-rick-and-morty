@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import './Modal.scss';
+import closeButton from './close-button.svg';
 
 const Modal = ({title, children, close}) => {
     return (
-        <React.Fragment>
+        <Fragment>
             <div className="overlay"></div>
             <section className="modal">
                 <header className="modal-header">
@@ -12,14 +13,17 @@ const Modal = ({title, children, close}) => {
                         className="modal-button"
                         type="button" 
                         onClick={close}>
-                        X
+                        <img 
+                            className="modal-button-img"
+                            src={closeButton} 
+                        />
                     </button>
                 </header>
                 <article className="modal-content">
                     {children}
                 </article>
             </section>
-        </React.Fragment>
+        </Fragment>
     );
 }
 

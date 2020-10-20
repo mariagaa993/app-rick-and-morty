@@ -1,23 +1,28 @@
-import React, {useState} from 'react';
+import React, { useState, Fragment} from 'react';
 import './App.scss';
+import './components/contentSection/SectionStyles.scss';
+import './components/modals/PageModals.scss';
 import Header from './components/header/Header';
-import MenuFilter from './components/menuFilter/MenuFilter';
+import Menu from './components/menu/Menu';
 import ContentContainer from './components/contentContainer/ContentContainer';
 import Footer from './components/footer/Footer';
+import Radio from './components/contexts/RadioContext';
 
 const App = () => {
 	const [radio, setRadio] = useState("characters")
 
 	return (
-		<React.Fragment>
-		<Header />
-		<div className="main-nav-content">
-			<MenuFilter radio={radio} setRadio={setRadio} />
-			<ContentContainer radio={radio} />	
-		</div>
-		<Footer />
-		</React.Fragment>
-	)
-};
+		<Fragment>
+			<Header />
+			<Radio.Provider value={{ radio, setRadio }} >
+				<div className="main-nav-content">
+					<Menu />
+					<ContentContainer />	
+				</div>
+			</Radio.Provider>
+			<Footer />
+		</Fragment>
+	);
+}
 
 export default App;

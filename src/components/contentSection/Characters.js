@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import './Characters.scss';
-import CharacterModal from '../../modals/CharacterModal';
+import React, { useState, useContext } from 'react';
+import CharacterModal from '../modals/CharacterModal';
 import { useQuery, gql } from '@apollo/client';
+import InputContext from '../contexts/InputContext';
+import PagesContext from '../contexts/PagesContext';
 
-const Characters = ({input}) => {
+const Characters = () => {
+    const {input} = useContext(InputContext);
     const [pageNumber, setPageNumber] = useState(1);
     const [selectedCharacter, setSelectedCharacter] = useState();
     const [displayCharacterModal, setDisplayCharacterModal] = useState(false);
@@ -14,7 +16,7 @@ const Characters = ({input}) => {
     };
 
     const nextPage = () => setPageNumber(pageNumber + 1);
-    
+
     const prevPage = () => setPageNumber(pageNumber - 1);
 
     const dataQuery = gql`
@@ -40,15 +42,15 @@ const Characters = ({input}) => {
 
     const dataCharacters = characters.map(character => {
         return (
-            <div key={character.id} className="card">
+            <div key={character.id} className="content-section-cards-card">
                 <img  
-                    className="card-img" 
+                    className="content-section-cards-card-img" 
                     src={character.image} 
                     alt={character.name} 
                 />
-                <h3 className="card-title">{character.name}</h3>
+                <h3 className="content-section-cards-card-title">{character.name}</h3>
                 <button 
-                    className="card-button"
+                    className="content-section-cards-card-button"
                     onClick={() => characterInfo(character)}>
                     View More
                 </button>
@@ -57,21 +59,13 @@ const Characters = ({input}) => {
     });   
     
     return (
-        <React.Fragment>
-            <section className="characters">
-                <h1 className="characters-title">Characters</h1>
-
-                {
-                    displayCharacterModal ?
-                        <CharacterModal character={selectedCharacter} close={() => setDisplayCharacterModal(false)} />
-                    :
-                        null  
-                }
-
-                <div className="cards-container">
+        <PagesContext.Provider value={{ selectedCharacter, setDisplayCharacterModal }}>
+            <section className="content-section">
+                <h1 className="content-section-title">Characters</h1>
+                <div className="content-section-cards">
                     {dataCharacters}
                 </div>
-                <div className="container-buttons">
+                <div className="content-section-buttons">
                     <button 
                         type="button" 
                         className="prev-button" 
@@ -87,8 +81,9 @@ const Characters = ({input}) => {
                         Next
                     </button>
                 </div>
-            </section>
-        </React.Fragment>
+                { displayCharacterModal ? <CharacterModal /> : null }
+            </section>   
+        </PagesContext.Provider>    
     );
 }
 

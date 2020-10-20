@@ -1,19 +1,36 @@
-import React from 'react';
-import './CharacterModal.scss';
+import React, { useContext } from 'react';
 import Modal from './Modal';
+import PagesContext from '../contexts/PagesContext';
 
-const CharacterModal = ({character, close}) => {        
+const CharacterModal = () => {  
+    const {selectedCharacter, setDisplayCharacterModal} = useContext(PagesContext);
+
+    const close = () => setDisplayCharacterModal(false);
+    
     return (
-        <Modal title={character.name} close={close}>
-            <figure>
+        <Modal title={selectedCharacter.name} close={close}>
+            <figure className="page-modals-figure">
                 <img 
-                    src={character.image}
-                    alt={character.name} 
+                    className="page-modals-figure-img"
+                    src={selectedCharacter.image}
+                    alt={selectedCharacter.name} 
                 />
-                <figcaption>
-                    <p><strong>Type:</strong> {`${character.type === "" ? 'Sin dato': character.type}`}</p>
-                    <p><strong>Gender:</strong> {character.gender}</p>
-                    <p><strong>Specie:</strong> {character.species}</p>
+                <figcaption className="page-modals-figcaption">
+                    <p className="page-modals-figcaption-p"><strong>Type:</strong>
+                        {` ${selectedCharacter.type === "" ? 
+                            'No Information Available' : selectedCharacter.type}
+                        `} 
+                    </p>
+                    <p className="page-modals-figcaption-p"><strong>Gender:</strong>
+                        {` ${selectedCharacter.gender === "" ? 
+                            'No Information Available' : selectedCharacter.gender}
+                        `}
+                    </p>
+                    <p className="page-modals-figcaption-p"><strong>Specie:</strong>
+                        {` ${selectedCharacter.species === "" ? 
+                            'No Information Available' : selectedCharacter.species}
+                        `}
+                    </p>
                 </figcaption>
             </figure>
         </Modal>

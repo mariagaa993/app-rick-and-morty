@@ -1,30 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Modal from './Modal';
+import PagesContext from '../contexts/PagesContext';
 
-const ModalEpisode = ({episode, close}) => {
+const ModalEpisode = () => {
+    const {selectedEpisode, setDisplayEpisodeModal} = useContext(PagesContext);
 
-    const firstFiveCharacters = episode.characters.slice(0, 5);
+    const close = () => setDisplayEpisodeModal(false);
+
+    const firstFiveCharacters = selectedEpisode.characters.slice(0, 5);
 
     const characters = firstFiveCharacters.map(character => {
         return (
-            <div key={character.id} className="mini-cards">
+            <div key={character.id} className="page-modals-figcaption-mini-cards">
                 <img 
-                    className="mini-cards-img" 
+                    className="page-modals-figcaption-mini-cards-img" 
                     src={character.image}
                     alt={character.name} 
                 />
-                <p className="mini-cards-p">{character.name}</p>
+                <p className="page-modals-figcaption-mini-cards-p">{character.name}</p>
             </div>
         );
     });          
         
     return (      
-        <Modal title={episode.name} close={close}>
-            <figure>
-                <figcaption>
-                    <p><strong>Release date:</strong> {episode.air_date}</p>
-                    <p><strong>Episode:</strong> {episode.episode}</p>
-                    <p><strong>Characters:</strong></p>
+        <Modal title={selectedEpisode.name} close={close}>
+            <figure className="page-modals-figure">
+                <figcaption className="page-modals-figcaption">
+                    <p className="page-modals-figcaption-p"><strong>Release date:</strong>
+                        {` ${selectedEpisode.air_date === "" ? 
+                            'No Information Available' : selectedEpisode.air_date}
+                        `}
+                    </p>
+                    <p className="page-modals-figcaption-p"><strong>Episode:</strong>
+                        {` ${selectedEpisode.episode === "" ? 
+                            'No Information Available' : selectedEpisode.episode}
+                        `}
+                    </p>
+                    <p className="page-modals-figcaption-p"><strong>Characters:</strong></p>
                     {characters}
                 </figcaption>
             </figure>     
