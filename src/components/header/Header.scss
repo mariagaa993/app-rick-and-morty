@@ -1,7 +1,7 @@
 @import '../../scss/mixins.scss';
 
 .header {
-    background-color: #B3C100;
+    background-color: #4Cb5F5;
     display: flex;
     height: 75px;
     padding: 15px;
@@ -9,10 +9,10 @@
         padding: 10px 30px;
     }
     @include breakpoint-tablet-desktop {
+        height: 90px;
         padding: 0 40px;
     }
     @include breakpoint-desktop-2 {
-        height: 83px;
         padding: 0 50px;
     }
     .header-content {
@@ -33,13 +33,3 @@
         } 
     }
 }
-
-
-/* 
-.header-logo {
-        width: 80%;
-        @include breakpoint-tablet {
-            width: 40%;
-        }
-    }
-*/

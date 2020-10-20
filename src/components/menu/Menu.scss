@@ -1,20 +1,20 @@
 @import '../../scss/mixins.scss';
 
 .menu-filter {
-    background-color: #34675c21;
+    background-color: #4cb4f54d;
     padding: 25px 15px;
     width: 100%;
     @include breakpoint-tablet {
         padding: 15px 30px;
     }
     @include breakpoint-tablet-desktop {
-        background-color: #34675c21;
-        height: calc(100vh - 75px - 50px); 
+        background-color: #4cb4f54d;
+        height: calc(100vh - 90px - 50px); 
         padding: 0;
         width: 200px;
     }
     @include breakpoint-desktop-2 {
-        height: calc(100vh - 83px - 50px);
+        height: calc(100vh - 90px - 50px);
     }
     .menu-filter-title {
         font-family: 'Montserrat', sans-serif;  
@@ -40,24 +40,3 @@
         }
     }     
 }
-
-
-
-/* 
-@include breakpoint-tablet-desktop {
-        background: darken(violet, 30);
-        height: calc(100vh - 75px - 50px); // 100vh menos 75px del header menos 50px de footer
-        padding: 0;
-        width: 150px;
-
-
-        li 
-
-        @include breakpoint-tablet-desktop {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 10px 0;
-            }
-
-*/

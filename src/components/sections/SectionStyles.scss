@@ -2,20 +2,28 @@
 
 .content-section {
     background-color: #fbfbfb;
-    position: relative;
+    height: 70vh;
+    overflow: auto;
     padding: 25px 15px;
+    position: relative;
     @include breakpoint-tablet-desktop {
         padding: 0 0 20px 0;
+    }
+    @include breakpoint-desktop-3 {
+        height: 55vh;
     }
     .content-section-title {
         font-family: 'Montserrat', sans-serif;
         font-size: 25px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin: 0;
         text-align: center;
         @include breakpoint-mobile-2 {
             margin: 0 0 15px 0;
         }
         @include breakpoint-tablet-desktop {
-            margin-top: 16%;
+            margin-top: 5px;
         }
         @include breakpoint-desktop-2 {
             margin-top: 0%;
@@ -34,22 +42,19 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
             height: 30px;
-            outline: none;   
-            width: 100%;
             margin: 5px;
+            outline: none;
+            transition: .2s linear;   
+            width: 100%;
             cursor: pointer;
             @include breakpoint-tablet {
-                border: 2px solid #34675C; 
                 width: 20%;
             }
             @include breakpoint-desktop-2 {
                 width: 8%;
             }
             &:hover {
-                background-color: #B3C100;
-                @include breakpoint-tablet {
-                    border: 2px solid #B3C100; 
-                }
+                background-color: #4Cb5F5;
             }
             &:disabled {
                 background-color: #ccc;
@@ -114,9 +119,10 @@
                 font-size: 15px;
                 outline: none;
                 padding: 10px;
+                transition: .2s linear;
                 width: 100%;
                 &:hover {
-                    background-color: #B3C100;
+                    background-color: #4Cb5F5;
                 }
             }
         }

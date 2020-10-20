@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './Menu.scss';
-import RadioContext from '../contexts/RadioContext';
+import RadioContext from '../../contexts/RadioContext';
 
 const Menu = () => {    
     const {radio, setRadio} = useContext(RadioContext);

@@ -28,3 +28,9 @@
         @content;
     }
 }
+
+@mixin breakpoint-desktop-3 {
+    @media (min-width: 1300px) {
+        @content;
+    }
+}

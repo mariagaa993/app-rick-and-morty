@@ -9,40 +9,34 @@
     width: 100%;
     height: 70vh;
     @include breakpoint-tablet-desktop {
-        height: calc(100vh - 75px - 95px);
+        height: calc(100vh - 250px - 95px);
         width: calc(100vw - 200px);
     }
     @include breakpoint-desktop-2 {
-        height: calc(50vh - 75px - 105px);
+        height: calc(50vh - 90px - 105px);
         width: calc(100vw - 250px);
     }
 }
 
 .content-container {
     background-color: #fbfbfb;
+    padding-top: 20px;
     width: 100%;
     @include breakpoint-tablet-desktop {
         box-sizing: border-box;
         overflow-y: auto;
-        height: calc(100vh - 75px - 50px);
+        height: calc(100vh - 90px - 50px);
         font-weight: 400;
         width: calc(100vw - 200px);
     }
-    @include breakpoint-desktop-2 {
-        height: calc(100vh - 83px - 50px);
-    }
     .content-container-search {
         background-color: #fbfbfb;
-        padding: 25px 15px;
+        padding: 15px 15px 30px 15px;
         @include breakpoint-tablet {
             text-align: center;
         }
         @include breakpoint-tablet-desktop {
             width: calc(100vw - 230px);
-        }
-        @include breakpoint-desktop-1 {
-            background-color: #fbfbfb;
-            padding: 45px 15px 45px 15px;
         }
         @include breakpoint-desktop-2 {
             width: calc(100vw - 252px);
@@ -80,7 +74,8 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
             height: 38px;
-            outline: none;   
+            outline: none; 
+            transition: .2s linear;  
             width: 100%;
             @include breakpoint-tablet {
                 border: 2px solid #34675C; 
@@ -90,81 +85,11 @@
                 width: 10%;
             }
             &:hover {
-                background-color: #B3C100;
+                background-color: #4Cb5F5;
                 @include breakpoint-tablet {
-                    border: 2px solid #B3C100; 
+                    border: 2px solid #4Cb5F5; 
                 }
             }
         }
     }
 }
-
-/* 
-.content-container-search {
-        background-color: #fbfbfb;
-        padding: 25px 15px;
-        @include breakpoint-tablet {
-            text-align: center;
-        }
-        @include breakpoint-tablet-desktop {
-            position: fixed;
-            width: calc(100vw - 230px);
-        }
-        @include breakpoint-desktop-1 {
-            background-color: #fbfbfb;
-            padding: 45px 15px 45px 15px;
-        }
-        @include breakpoint-desktop-2 {
-            width: calc(100vw - 275px);
-        }
-        .input-search {
-            border: 1px solid #ccc;
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-sizing: border-box;
-            color: #ccc;
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 5px;
-            padding: 10px;
-            width: 100%;
-            @include breakpoint-tablet {
-                width: 50%;
-            }
-            @include breakpoint-desktop-2 {
-                width: 40%;
-            }
-            &::placeholder {
-                color: #ccc;
-    
-            }
-            &:focus {
-                border-color: #ccc;
-                box-shadow: 0 0 5px rgba(102,175,233,.6);
-                outline: none;
-            }
-        }
-        .search-button {
-            background-color: #34675C;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
-            height: 38px;
-            outline: none;   
-            width: 100%;
-            @include breakpoint-tablet {
-                border: 2px solid #34675C; 
-                width: 20%;
-            }
-            @include breakpoint-desktop-2 {
-                width: 10%;
-            }
-            &:hover {
-                background-color: #B3C100;
-                @include breakpoint-tablet {
-                    border: 2px solid #B3C100; 
-                }
-            }
-        }
-    }
-*/

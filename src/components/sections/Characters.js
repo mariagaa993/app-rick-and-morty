@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import CharacterModal from '../modals/CharacterModal';
 import { useQuery, gql } from '@apollo/client';
-import InputContext from '../contexts/InputContext';
-import PagesContext from '../contexts/PagesContext';
+import InputContext from '../../contexts/InputContext';
+import PagesContext from '../../contexts/PagesContext';
 
 const Characters = () => {
     const {input} = useContext(InputContext);
