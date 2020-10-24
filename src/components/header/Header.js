@@ -11,7 +11,7 @@ const Header = () => {
                     alt="Logo" 
                 />
                 <h1 className="header-title">
-                    Welcome to <strong>Rick and Morty</strong> Page
+                    Welcome to <strong>Rick and Morty</strong> App
                 </h1>
             </div>
         </header>
