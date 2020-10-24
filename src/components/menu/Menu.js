@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import './Menu.scss';
-import RadioContext from '../../contexts/RadioContext';
+import AppContext from '../../contexts/AppContext';
 
 const Menu = () => {    
-    const {radio, setRadio} = useContext(RadioContext);
+    const {radio, setRadio} = useContext(AppContext);
 
     return (    
         <nav className="menu-filter">

@@ -1,23 +1,16 @@
 import React, { useState, useContext } from 'react';
-import LocationModal from '../modals/LocationModal';
+import LocationsCards from '../cards/LocationsCards';
+import PaginationButtons from '../paginationButtons/PaginationButtons';
 import { useQuery, gql } from '@apollo/client';
-import InputContext from '../../contexts/InputContext';
-import PagesContext from '../../contexts/PagesContext';
+import ContenContainerContext from '../../contexts/ContentContainerContext';
+import SectionContext from '../../contexts/SectionContext';
+import { BeatLoader } from 'react-spinners';
 
 const Locations = () => {
-    const {input} = useContext(InputContext);
+    const {input} = useContext(ContenContainerContext);
     const [pageNumber, setPageNumber] = useState(1);
     const [selectedLocation, setSelectedLocation] = useState();
     const [displayLocationModal, setDisplayLocationModal] = useState(false);
-
-    const locationInfo = location => {
-        setSelectedLocation(location);
-        setDisplayLocationModal(true);
-    };
-
-    const nextPage = () => setPageNumber(pageNumber + 1);
-
-    const prevPage = () => setPageNumber(pageNumber - 1);
 
     const dataQuery = gql`
     query {
@@ -38,51 +31,27 @@ const Locations = () => {
 
     const { loading, error, data } = useQuery(dataQuery);
 
-    if (loading) return <h1 className="loading-error">Loading...✨</h1>;
+    if (loading) return <div className="loading"><BeatLoader loading color={'#FF8E00'}/></div>;
     if (error) return <h1 className="loading-error">Error!😭</h1>;
-    
-    const locations = data.locations.results;
-
-    const dataLocations = locations.map(location => {
-        return (
-            <div key={location.id} className="content-section-cards-card">
-                <h3 className="content-section-cards-card-title">{location.name}</h3>
-                <p className="content-section-cards-card-paragraph">{location.dimension}</p>
-                <button 
-                    className="content-section-cards-card-button"
-                    onClick={() => locationInfo(location)}>
-                    View More
-                </button>
-            </div>
-        );
-    });
    
     return (
-        <PagesContext.Provider value={{ selectedLocation, setDisplayLocationModal }}>
+        <SectionContext.Provider value={{ 
+            selectedLocation, 
+            setSelectedLocation,
+            displayLocationModal,
+            setDisplayLocationModal,
+            pageNumber,
+            setPageNumber,
+            data
+            }}>
             <section className="content-section">
                 <h1 className="content-section-title">Locations</h1>
                 <div className="content-section-cards">
-                    {dataLocations}
+                    <LocationsCards />
                 </div>
-                <div className="content-section-buttons">
-                    <button 
-                        type="button" 
-                        className="prev-button" 
-                        disabled={`${pageNumber === 1 ? 'disabled' : ''}`} 
-                        onClick={prevPage}>
-                        Prev
-                    </button>
-                    <button 
-                        type="button"
-                        className="next-button" 
-                        disabled={`${pageNumber === 34 ? 'disabled' : ''}`}
-                        onClick={nextPage}>
-                        Next
-                    </button>
-                </div>
-                { displayLocationModal ? <LocationModal /> : null }
+                <PaginationButtons />
             </section>
-        </PagesContext.Provider>  
+        </SectionContext.Provider>  
     );
 }
 

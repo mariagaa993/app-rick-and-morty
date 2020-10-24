@@ -1,17 +1,27 @@
-@import '../../scss/mixins.scss';
+@import './Mixins.scss';
 
 .page-modals-figure {
     animation-name: animate;
     animation-duration: 1s;
-    height: 68vh;
+    height: 53vh;
+    overflow-y: scroll;
     margin: 5px auto;
-    overflow-y: auto;
     width: 100%; 
+    @include breakpoint-mobile-2 {
+        height: 50vh;
+        text-align: center;
+    }
+    @include breakpoint-tablet {
+        height: 36vh;
+    }
     @include breakpoint-tablet-desktop {
-        height: 71vh;
+        height: 32vh;
     }
     @include breakpoint-desktop-2 {
         height: 63vh;
+    }
+    @include breakpoint-desktop-3 {
+        height: 60vh;
     }
     @keyframes animate {
         from {
@@ -20,9 +30,6 @@
         to {
             opacity: 1;
         }
-    }
-    @include breakpoint-mobile-2 {
-        text-align: center;
     }
     .page-modals-figure-img {
         background-color: white;

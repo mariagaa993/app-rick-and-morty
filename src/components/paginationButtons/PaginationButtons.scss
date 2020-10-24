@@ -1,0 +1,51 @@
+@import '../../scss//mixins.scss';
+
+.content-section {
+.content-section-buttons {
+        align-items: center;
+        display: flex;
+        height: 100px;
+        margin: 0 auto;
+        width: 70%;
+        @include breakpoint-tablet {
+            justify-content: center;
+            width: 80%;
+        }
+        .prev-button, .next-button {
+            background-color: #FF8E00;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            height: 45px;
+            margin: 5px;
+            outline: none;
+            transition: .2s linear;   
+            width: 100%;
+            cursor: pointer;
+            @include breakpoint-tablet {
+                width: 20%;
+            }
+            @include breakpoint-desktop-2 {
+                width: 15%;
+            }
+            @include breakpoint-desktop-3 {
+                font-size: 16px;
+                height: 35px;
+                width: 12%;
+            }
+            &:hover {
+                background-color: #BCDBF1;
+                color: #313131;
+            }
+            &:disabled {
+                background-color: #ccc;
+                color: lighten(#ccc, 30);
+                border-color: lighten(#fbfbfb, 30);
+                cursor: default;
+            }
+        }
+    }
+}

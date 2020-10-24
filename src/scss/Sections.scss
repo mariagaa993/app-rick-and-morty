@@ -1,0 +1,35 @@
+@import './Mixins.scss';
+
+.content-section {
+    background-color: #fbfbfb;
+    height: 70vh;
+    overflow: auto;
+    padding: 25px 15px;
+    position: relative;
+    @include breakpoint-tablet-desktop {
+        height: 75vh;
+    }
+    @include breakpoint-desktop-2 {
+        height: 65vh;
+    }
+    @include breakpoint-desktop-3 {
+        height: 55vh;
+    }
+    .content-section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 25px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin: 0;
+        text-align: center;
+        @include breakpoint-mobile-2 {
+            margin: 0 0 15px 0;
+        }
+        @include breakpoint-tablet-desktop {
+            margin-top: 5px;
+        }
+        @include breakpoint-desktop-2 {
+            margin-top: 0%;
+        }
+    }
+}

@@ -1,23 +1,16 @@
 import React, { useState, useContext } from 'react';
-import EpisodeModal from '../modals/EpisodeModal';
+import EpisodesCards from '../cards/EpisodesCards';
+import PaginationButtons from '../paginationButtons/PaginationButtons';
 import { useQuery, gql } from '@apollo/client';
-import InputContext from '../../contexts/InputContext';
-import PagesContext from '../../contexts/PagesContext';
+import ContenContainerContext from '../../contexts/ContentContainerContext';
+import SectionContext from '../../contexts/SectionContext';
+import { BeatLoader } from 'react-spinners';
 
 const Episodes = () => {
-    const {input} = useContext(InputContext);
+    const {input} = useContext(ContenContainerContext);
     const [pageNumber, setPageNumber] = useState(1);
     const [selectedEpisode, setSelectedEpisode] = useState();
     const [displayEpisodeModal, setDisplayEpisodeModal] = useState(false);
-
-    const episodeInfo = episode => {
-        setSelectedEpisode(episode);
-        setDisplayEpisodeModal(true);
-    };
-
-    const nextPage = () => setPageNumber(pageNumber + 1);
-
-    const prevPage = () => setPageNumber(pageNumber - 1);
 
     const dataQuery = gql`
     query {
@@ -38,51 +31,27 @@ const Episodes = () => {
 
     const { loading, error, data } = useQuery(dataQuery);
 
-    if (loading) return <h1 className="loading-error">Loading...✨</h1>;
+    if (loading) return <div className="loading"><BeatLoader loading color={'#FF8E00'}/></div>;
     if (error) return <h1 className="loading-error">Error!😭</h1>;
     
-    const episodes = data.episodes.results;
-
-    const dataEpisodes = episodes.map(episode => {
-        return (
-            <div key={episode.id} className="content-section-cards-card">
-                <h3 className="content-section-cards-card-title">{episode.name}</h3>
-                <p className="content-section-cards-card-paragraph">{episode.episode}</p>
-                <button 
-                    className="content-section-cards-card-button"
-                    onClick={() => episodeInfo(episode)}>
-                    View More
-                </button>
-            </div>      
-        );
-    });
-    
     return (
-        <PagesContext.Provider value={{ selectedEpisode, setDisplayEpisodeModal }}>
+        <SectionContext.Provider value={{ 
+            selectedEpisode,
+            setSelectedEpisode,
+            displayEpisodeModal,
+            setDisplayEpisodeModal,
+            pageNumber,
+            setPageNumber, 
+            data
+            }}>
             <section className="content-section">
                 <h1 className="content-section-title">Episodes</h1>
                 <div className="content-section-cards">
-                    {dataEpisodes}
+                    <EpisodesCards />                    
                 </div>
-                <div className="content-section-buttons">
-                    <button 
-                        type="button" 
-                        className="prev-button" 
-                        disabled={`${pageNumber === 1 ? 'disabled' : ''}`} 
-                        onClick={prevPage}>
-                        Prev
-                    </button>
-                    <button 
-                        type="button"
-                        className="next-button" 
-                        disabled={`${pageNumber === 34 ? 'disabled' : ''}`}
-                        onClick={nextPage}>
-                        Next
-                    </button>
-                </div>
-                { displayEpisodeModal ? <EpisodeModal /> : null }
+                <PaginationButtons />
             </section>
-        </PagesContext.Provider>  
+        </SectionContext.Provider>  
     );
 }
 

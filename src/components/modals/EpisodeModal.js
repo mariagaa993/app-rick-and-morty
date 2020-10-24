@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Modal from './Modal';
-import PagesContext from '../../contexts/PagesContext';
+import SectionContext from '../../contexts/SectionContext';
 
 const ModalEpisode = () => {
-    const {selectedEpisode, setDisplayEpisodeModal} = useContext(PagesContext);
+    const {selectedEpisode, setDisplayEpisodeModal} = useContext(SectionContext);
 
     const close = () => setDisplayEpisodeModal(false);
 

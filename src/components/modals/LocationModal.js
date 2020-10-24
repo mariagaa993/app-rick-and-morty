@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Modal from './Modal';
-import PagesContext from '../../contexts/PagesContext';
+import SectionContext from '../../contexts/SectionContext';
 
 const LocationsModal = () => {
-    const {selectedLocation, setDisplayLocationModal} = useContext(PagesContext);
+    const {selectedLocation, setDisplayLocationModal} = useContext(SectionContext);
 
     const close = () => setDisplayLocationModal(false);
     

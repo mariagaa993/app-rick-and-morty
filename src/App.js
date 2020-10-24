@@ -1,12 +1,13 @@
 import React, { useState, Fragment} from 'react';
 import './App.scss';
-import './components/sections/SectionStyles.scss';
-import './components/modals/PageModals.scss';
+import './scss/Sections.scss';
+import './scss/Cards.scss';
+import './scss/Modals.scss';
 import Header from './components/header/Header';
 import Menu from './components/menu/Menu';
 import ContentContainer from './components/contentContainer/ContentContainer';
 import Footer from './components/footer/Footer';
-import Radio from './contexts/RadioContext';
+import AppContext from './contexts/AppContext';
 
 const App = () => {
 	const [radio, setRadio] = useState("characters")
@@ -14,12 +15,12 @@ const App = () => {
 	return (
 		<Fragment>
 			<Header />
-			<Radio.Provider value={{ radio, setRadio }} >
+			<AppContext.Provider value={{ radio, setRadio }} >
 				<div className="main-nav-content">
 					<Menu />
 					<ContentContainer />	
 				</div>
-			</Radio.Provider>
+			</AppContext.Provider>
 			<Footer />
 		</Fragment>
 	);

@@ -1,27 +1,37 @@
-@import '../../scss/mixins.scss';
+@import '../../scss/Mixins.scss';
 
 .menu-filter {
-    background-color: #4cb4f54d;
+    background: linear-gradient(rgba(188, 219, 241, 0.3), rgba(255, 80, 3, 0.2));
     padding: 25px 15px;
     width: 100%;
     @include breakpoint-tablet {
         padding: 15px 30px;
     }
     @include breakpoint-tablet-desktop {
-        background-color: #4cb4f54d;
-        height: calc(100vh - 90px - 50px); 
+        height: calc(100vh - 90px - 65px); 
         padding: 0;
-        width: 200px;
+        width: 260px;
     }
     @include breakpoint-desktop-2 {
         height: calc(100vh - 90px - 50px);
     }
+    @include breakpoint-desktop-3 {
+        height: calc(100vh - 80px - 40px);
+    }
     .menu-filter-title {
+        color: #313131;
         font-family: 'Montserrat', sans-serif;  
+        font-size: 26px;
         margin-top: 13px;   
+        @include breakpoint-tablet {
+            font-size: 29px;
+        }
         @include breakpoint-tablet-desktop {
             margin-top: 20px;
             padding-left: 20px;
+        }
+        @include breakpoint-desktop-3 {
+            font-size: 25px;
         }
     }
     .menu-filter-ul {
@@ -32,10 +42,18 @@
             padding-left: 15px;
         }
         li {
+            color: #313131;
             font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
             margin: 13px 0;
+            @include breakpoint-tablet {
+                font-size: 25px;
+            }
             @include breakpoint-tablet-desktop {
                 margin: 30px 0;
+            }
+            @include breakpoint-desktop-3 {
+                font-size: 18px;
             }
         }
     }     

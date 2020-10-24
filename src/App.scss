@@ -1,4 +1,62 @@
+@import './scss/mixins.scss';
+
 .main-nav-content {
     display: flex;
     flex-wrap: wrap;
+}
+
+.header {
+    background-color: #BCDBF1;
+    display: flex;
+    height: 75px;
+    padding: 15px;
+    @include breakpoint-tablet {
+        padding: 15px 30px;
+    }
+    @include breakpoint-tablet-desktop {
+        padding: 15px 40px;
+    }
+    @include breakpoint-desktop-2 {
+        height: 90px;
+        padding: 0 50px;
+    }
+    @include breakpoint-desktop-3 {
+        height: 80px;
+    }
+    .header-content {
+        align-items: center;
+        display: flex;
+        .header-title {
+            color: #313131;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 25px;
+            font-weight: 400; 
+        }
+        .header-logo {
+            margin-right: 8px;
+            width: 65px;
+        } 
+    }
+}
+
+footer {
+    align-items: center;
+    background-color: #FF5003;
+    display: flex;
+    height: 65px;
+    justify-content: center;
+    padding: 0 10px;
+    @include breakpoint-desktop-1 {
+        height: 50px;
+    }
+    @include breakpoint-desktop-3 {
+        height: 40px;
+    }
+    p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+        @include breakpoint-desktop-3 {
+            font-size: 15px;
+        }
+    }
 }

@@ -15,7 +15,7 @@
     box-sizing: border-box;
     padding: 15px;
     position: fixed;
-    top: 5vw;
+    top: 15vw;
     width: 91%;
     z-index: 100;
     @include breakpoint-mobile-2 {
@@ -26,11 +26,17 @@
         width: 50%;
     }
     @include breakpoint-tablet-desktop {
+        top: 9vw;
         left: 24%;
         width: 55%;
     }
     @include breakpoint-desktop-2 {
-        left: 34%;
+        top: 7vw;
+        width: 50%;
+    }
+    @include breakpoint-desktop-3 {
+        left: 35%;
+        top: 5vw;
         width: 30%;
     }
     .modal-header {

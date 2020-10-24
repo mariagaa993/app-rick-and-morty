@@ -3,12 +3,14 @@ import './ContentContainer.scss';
 import Characters from '../sections/Characters';
 import Locations from '../sections/Locations';
 import Episodes from '../sections/Episodes';
-import InputContext from '../../contexts/InputContext';
-import RadioContext from '../../contexts/RadioContext';
+import ContenContainerContext from '../../contexts/ContentContainerContext';
+import AppContext from '../../contexts/AppContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 const ContentContainer = () => {
-    const {radio} = useContext(RadioContext);
+    const {radio} = useContext(AppContext);
     const [input, setInput] = useState('');
     const searchRef = useRef();
     
@@ -20,7 +22,7 @@ const ContentContainer = () => {
     };
     
     return (
-        <InputContext.Provider value={{ input }}>
+        <ContenContainerContext.Provider value={{ input }}>
             <section className="content-container">
                 <div className="content-container-search">
                     <input 
@@ -34,6 +36,7 @@ const ContentContainer = () => {
                         type="button"
                         onClick={clear}>
                         Clear
+                        <FontAwesomeIcon icon={faTrash} style={{marginLeft: '5px'}} />
                     </button>
                 </div>
                 
@@ -41,7 +44,7 @@ const ContentContainer = () => {
                 { radio === "episodes"   ? <Episodes />   : null } 
                 { radio === "locations"  ? <Locations />  : null }    
             </section>
-        </InputContext.Provider>
+        </ContenContainerContext.Provider>
     );
 }
 

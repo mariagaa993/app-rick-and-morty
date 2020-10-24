@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import './Modal.scss';
-import closeButton from './close-button.svg';
+import closeButton from '../../assets/close-button.svg';
 
 const Modal = ({title, children, close}) => {
     return (

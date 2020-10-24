@@ -1,6 +1,5 @@
 import React from 'react';
-import logo from '../../logo.svg';
-import './Header.scss';
+import logo from '../../assets/logo.svg';
 
 const Header = () => {
     return (
@@ -11,7 +10,9 @@ const Header = () => {
                     className="header-logo"
                     alt="Logo" 
                 />
-                <h1 className="header-title">Welcome to <strong>Rick and Morty</strong> Page</h1>
+                <h1 className="header-title">
+                    Welcome to <strong>Rick and Morty</strong> Page
+                </h1>
             </div>
         </header>
     );
