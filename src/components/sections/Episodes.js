@@ -32,7 +32,7 @@ const Episodes = () => {
     const { loading, error, data } = useQuery(dataQuery);
 
     if (loading) return <div className="loading"><BeatLoader loading color={'#FF8E00'}/></div>;
-    if (error) return <h1 className="loading-error">Error!😭</h1>;
+    if (error) return <h1 className="loading">Error!😭</h1>;
     
     return (
         <SectionContext.Provider value={{ 
