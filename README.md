@@ -1,7 +1,7 @@
 ## Rick and Morty App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br />
-- Live app -> [Rick and Morty App](hhttps://mariagaa993.github.io/rick-and-morty-app).<br />
+- Live app -> [Rick and Morty App](https://mariagaa993.github.io/rick-and-morty-app).<br />
 - App available for all devices.💖
 
 ## What does the app do? 
