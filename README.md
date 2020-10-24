@@ -10,15 +10,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     - Characters
     - Episodes
     - Locations
-- Look for something specific
-- Pagination
-- Modal to see more information
+- You can write in the search and it will show you the data obtained from the API
+- The search can be done by name 
+- Button to reset the search and clean the container
+- Paginator
+- When you click on one item, a modal shown with detailed information
 
 ## Was used to create the app: 
 
-- UseState
-- UseContext
-- SASS
+- React Hooks
+    - UseState  
+    - UseContext
+- SASS/scss
 - GraphQL
 - Apollo Client
 - React-spinners
